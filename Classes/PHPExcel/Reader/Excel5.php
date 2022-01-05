@@ -3906,7 +3906,7 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
             $xfIndex = self::getInt2d($recordData, 4);
 
             // offset: 6; size: 8; result of the formula
-            if ((ord($recordData[6]) == 0) && (ord($recordData[12}) == 255) && (ord($recordData{13]) == 255)) {
+            if ((ord($recordData[6]) == 0) && (ord($recordData[12]) == 255) && (ord($recordData[13]) == 255)) {
                 // String formula. Result follows in appended STRING record
                 $dataType = PHPExcel_Cell_DataType::TYPE_STRING;
 
@@ -5387,18 +5387,18 @@ class PHPExcel_Reader_Excel5 extends PHPExcel_Reader_Abstract implements PHPExce
                 case 'tSub': // subtraction
                     $op2 = array_pop($formulaStrings);
                     $op1 = array_pop($formulaStrings);
-                    $formulaStrings[] = "$op1$space1$space0[$token['data']]$op2";
+                    $formulaStrings[] = "$op1$space1$space0{$token['data']}$op2";
                     unset($space0, $space1);
                     break;
                 case 'tUplus': // unary plus
                 case 'tUminus': // unary minus
                     $op = array_pop($formulaStrings);
-                    $formulaStrings[] = "$space1$space0[$token['data']]$op";
+                    $formulaStrings[] = "$space1$space0{$token['data']}$op";
                     unset($space0, $space1);
                     break;
                 case 'tPercent': // percent sign
                     $op = array_pop($formulaStrings);
-                    $formulaStrings[] = "$op$space1$space0[$token['data']]";
+                    $formulaStrings[] = "$op$space1$space0{$token['data']}";
                     unset($space0, $space1);
                     break;
                 case 'tAttrVolatile': // indicates volatile function

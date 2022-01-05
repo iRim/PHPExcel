@@ -3453,6 +3453,7 @@ class PHPExcel_Calculation
                     break;
                 }
             }
+            
             //    Ignore white space
             while (($formula[$index] == "\n") || ($formula[$index] == "\r")) {
                 ++$index;
